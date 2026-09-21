@@ -21,6 +21,16 @@
 
   <main class="container">
 
+    <!-- ===== SECTION 0: STUDENT INFO (not printed as inputs; shown as text in print area) ===== -->
+    <section class="card no-print">
+      <h2>Student Information</h2>
+      <div class="student-info-row">
+        <label>Student Name <input type="text" id="studentName" placeholder="e.g. Ali Raza"></label>
+        <label>Class <input type="text" id="studentClass" placeholder="e.g. 10th"></label>
+        <label>Father Name <input type="text" id="fatherName" placeholder="e.g. Ahmed Raza"></label>
+      </div>
+    </section>
+
     <!-- ===== SECTION 1: MARKS INPUT (not printed) ===== -->
     <section class="card no-print">
       <h2>Subjects &amp; Marks</h2>
@@ -43,6 +53,14 @@
 
     <!-- ===== SECTION 2: RESULT (this part is printed) ===== -->
     <section id="printArea">
+      <div class="card student-print-card">
+        <div class="info-grid">
+          <div class="info-item"><span>Student Name</span><strong id="printName">-</strong></div>
+          <div class="info-item"><span>Class</span><strong id="printClass">-</strong></div>
+          <div class="info-item"><span>Father Name</span><strong id="printFather">-</strong></div>
+        </div>
+      </div>
+
       <div class="card summary">
         <div class="ring-wrap">
           <div id="ring" class="ring"><span id="ringText">0%</span></div>
