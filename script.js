@@ -1,8 +1,4 @@
-/* =========================================================
-   STUDENT RESULT CALCULATOR - script.js
-   ========================================================= */
 
-/* ---------- 1. SETTINGS (yahan rules aasani se change karein) ---------- */
 const PASS_PERCENTAGE = 40;
 
 // Grade rules: upar se neeche check hote hain. "min" = minimum percentage.
@@ -24,6 +20,10 @@ const emptyState  = document.getElementById("emptyState");
 const errorBox    = document.getElementById("errorBox");
 const resultBody  = document.getElementById("resultBody");
 const ring        = document.getElementById("ring");
+
+const studentNameInput  = document.getElementById("studentName");
+const studentClassInput = document.getElementById("studentClass");
+const fatherNameInput   = document.getElementById("fatherName");
 
 /* ---------- 3. CALCULATION FUNCTIONS ---------- */
 
@@ -116,6 +116,14 @@ function showErrors(errors) {
   errorBox.classList.remove("hidden");
 }
 
+/* ---------- 5b. STUDENT INFO (shown on the printable result) ---------- */
+
+function updateStudentInfo() {
+  document.getElementById("printName").textContent = studentNameInput.value.trim() || "-";
+  document.getElementById("printClass").textContent = studentClassInput.value.trim() || "-";
+  document.getElementById("printFather").textContent = fatherNameInput.value.trim() || "-";
+}
+
 /* ---------- 6. MAIN CALCULATION ---------- */
 
 // strict = true (Calculate button): khali marks ko bhi error ginta hai
@@ -144,6 +152,7 @@ function calculateResult(strict = false) {
 
   showErrors(errors);
   updateResult(validSubjects);
+  updateStudentInfo();
 }
 
 // Screen par summary + table update karta hai
@@ -201,6 +210,9 @@ function renderTable(subjects) {
 /* ---------- 7. RESET, PRINT, DARK MODE ---------- */
 
 function resetCalculator() {
+  studentNameInput.value = "";
+  studentClassInput.value = "";
+  fatherNameInput.value = "";
   subjectList.innerHTML = "";
   DEFAULT_SUBJECTS.forEach(name => addSubject(name, 100));
   showErrors([]);
@@ -227,6 +239,11 @@ document.getElementById("themeBtn").addEventListener("click", toggleDarkMode);
 
 // LIVE CALCULATION: kisi bhi input mein typing par result update
 subjectList.addEventListener("input", () => calculateResult());
+
+// Student info: turant printable area par update ho (marks calculate kiye bina bhi)
+[studentNameInput, studentClassInput, fatherNameInput].forEach(input => {
+  input.addEventListener("input", updateStudentInfo);
+});
 
 // Remove buttons: event delegation (naye rows ke liye bhi kaam karta hai)
 subjectList.addEventListener("click", (event) => {
