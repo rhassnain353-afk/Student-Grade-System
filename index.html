@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Result Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header no-print">
+    <div class="container header-inner">
+      <div>
+        <h1>🎓 Student Result Calculator</h1>
+        <p>Enter your marks and see your result instantly.</p>
+      </div>
+      <button id="themeBtn" class="btn btn-ghost" type="button" aria-pressed="false">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ===== SECTION 1: MARKS INPUT (not printed) ===== -->
+    <section class="card no-print">
+      <h2>Subjects &amp; Marks</h2>
+
+      <!-- JavaScript adds subject rows here -->
+      <div id="subjectList"></div>
+
+      <p id="emptyState" class="empty hidden">No subjects added yet. Click 'Add Subject' to begin.</p>
+
+      <!-- Friendly error messages appear here -->
+      <div id="errorBox" class="error-box hidden" role="alert"></div>
+
+      <div class="actions">
+        <button id="addBtn" class="btn btn-primary" type="button">+ Add Subject</button>
+        <button id="calcBtn" class="btn btn-success" type="button">Calculate Result</button>
+        <button id="resetBtn" class="btn btn-ghost" type="button">Reset</button>
+        <button id="printBtn" class="btn btn-ghost" type="button">🖨 Print Result</button>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 2: RESULT (this part is printed) ===== -->
+    <section id="printArea">
+      <div class="card summary">
+        <div class="ring-wrap">
+          <div id="ring" class="ring"><span id="ringText">0%</span></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span>Total Marks</span><strong id="resTotal">0</strong></div>
+          <div class="stat"><span>Obtained Marks</span><strong id="resObtained">0</strong></div>
+          <div class="stat"><span>Percentage</span><strong id="resPercent">0%</strong></div>
+          <div class="stat"><span>Grade</span><strong id="resGrade">-</strong></div>
+          <div class="stat"><span>Result</span><strong id="resStatus" class="badge">-</strong></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Subject-wise Result</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Subject</th><th>Obtained</th><th>Total</th>
+                <th>Percentage</th><th>Grade</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="resultBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
